@@ -1,0 +1,11 @@
+{
+  "name": "Whisper-API",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Dani",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "openai": "^4.16.0"
+  }
+}
