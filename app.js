@@ -2,13 +2,18 @@ import OpenAI from "openai";
 
 const openai = new OpenAI();
 
+const fs = require('fs');
+data = await fs.readFile(audioFilePath)
+
+const audioFilePath = '/audio.mp4a';
+
 async function main() {
-  const completion = await openai.chat.completions.create({
-    messages: [{ role: "system", content: "Cat traieste o albina?" }],
-    model: "gpt-3.5-turbo",
+  const transcript = await openai.audio.transcriptions.create({
+    model:"whisper-1",
+    file: data
   });
 
-  console.log(completion.choices[0]);
+  console.log(transcript);
 }
 
 main();
