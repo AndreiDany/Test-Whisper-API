@@ -6,6 +6,7 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "audio": "^1.2.0",
     "fs": "^0.0.1-security",
     "openai": "^4.16.0"
   }
