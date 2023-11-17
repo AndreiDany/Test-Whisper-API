@@ -1,34 +1,14 @@
 import fs from "fs";
-import path from "path";
-import OpenAI, { toFile } from "openai";
+import OpenAI from "openai";
 
-const openai = new OpenAI({
-  apiKey: ''
-});
+const openai = new OpenAI();
 
-const audioFilePath = path.resolve("speech.mp3");
-console.log(audioFilePath)
 async function main() {
-
-const audioFile = await fs.readFileSync(audioFilePath);
-
-const params = {
-  model: 'whisper-1',
-  file: toFile(audioFile)
-};
-
-transcriptionSpech(params);
-
-}
-
-function transcriptionSpech(params) {
-  const transcriptions = openai.audio.transcriptions.create(params)
-  .then(transcription => {
-    console.log(transcription);
-  })
-  .catch(error => {
-    console.error('Eroare:', error);
+  const transcription = await openai.audio.transcriptions.create({
+    file: fs.createReadStream("speech.mp3"),
+    model: "whisper-1",
   });
-}
 
+  console.log(transcription.text);
+}
 main();
